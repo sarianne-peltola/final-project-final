@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import user from './reducers/user';
 
+import Header from './components/Header'
 import Main from './components/Main'
 import Login from './components/Login'
 
@@ -18,7 +19,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <header></header>
+        <Header />
         <Switch>
           <Route exact path='/' component={Main} />
           <Route path='/login' component={Login} />

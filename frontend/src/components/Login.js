@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch, batch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-import user from '../reducers/user'
-
-import { API_URL } from '../resuable/urls';
+import { sign } from '../reducers/user';
 
 const Login = () => {
   const [name, setName] = useState('');
@@ -12,59 +10,44 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [mode, setMode] = useState(null);
 
-  const accessToken = useSelector(store => store.user.accessToken)
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const errors = useSelector((store => store.user.errors));
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (accessToken) {
-      history.push('/')
+      history.push('/');
     }
-  }, [accessToken, history])
+  }, [accessToken, history]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, password })
-    }
-    fetch(API_URL(mode), options)
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          batch(() => {
-            dispatch(user.actions.setName(data.name))
-            dispatch(user.actions.setEmail(data.email))
-            dispatch(user.actions.setAccessToken(data.accessToken))
-            dispatch(user.actions.setErrors(null))
-          })
-        } else {
-          dispatch(user.actions.setErrors(data))
-        }
-      })
-      .catch()
+    dispatch(sign(name, email, password, mode));
   };
 
   return (
-    <form onSubmit={onFormSubmit}>
+    <div>
+      <h1>Welcome to SecretMessage!</h1>
+      <h2>Please log in or register as a user in order to view your message</h2>
+      <form onSubmit={onFormSubmit}>
       <input
         type='text'
         value={name}
         onChange={(e) => setName(e.target.value)}
+        placeholder='Name'
       />
       <input
         type='text'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        placeholder='Email'
       />
       <input
         type='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        placeholder='Password'
       />
       <button type='submit' onClick={() => setMode('signin')}>
         Sign in
@@ -73,6 +56,8 @@ const Login = () => {
         Register
       </button>
     </form>
+    {errors && <div>{errors.message}</div>}
+    </div>
   );
 };
 
