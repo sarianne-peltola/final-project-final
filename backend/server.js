@@ -3,7 +3,10 @@ import bodyParser, { json } from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import crypto from 'crypto';
+import dotenv from 'dotenv'
 import bcrypt from 'bcrypt-nodejs';
+
+dotenv.config()
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/authAPI';
 mongoose.connect(mongoUrl, {
