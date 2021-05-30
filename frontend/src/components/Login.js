@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { HeartFillIcon } from '@primer/octicons-react';
 
 import { sign } from '../reducers/user';
-import { Flex } from '@primer/components';
+
 
 const Login = () => {
   const [name, setName] = useState('');
