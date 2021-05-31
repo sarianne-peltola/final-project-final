@@ -8,6 +8,6 @@ The styling is unfortunately not yet finished. I run into problem with my styled
 
 ## View it live
 
-FE: https://tender-cori-4354e6.netlify.app/login
+FE: https://tender-cori-4354e6.netlify.app/
 
 BE: https://project-auth-sari.herokuapp.com/

@@ -163,6 +163,7 @@ const InputBox = styled.input`
       opacity: 1;
       color: indigo;
       font-size: 12px;
+      z-index: 1;
     }
   }
 `;
@@ -180,6 +181,7 @@ const Label = styled.label`
   font-weight: 400;
   text-decoration: inherit;
   text-transform: inherit;
+  z-index: -1;
 `;
 
 const CountLine = styled.div`
