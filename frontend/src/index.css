@@ -1,6 +1,8 @@
 html {
   display: flex;
   justify-content: center;
+  background-color: #30094f;
+  box-sizing: border-box;
 }
 
 body {

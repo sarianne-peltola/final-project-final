@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <PageWrapper>
       <h1>Welcome to SecretMessage!</h1>
-      <h2>Please log in or register as a user in order to view your message</h2>
+      <h2>Please log in or register as a user</h2>
       <Form onSubmit={onFormSubmit}>
         <Wrapper>
           <Container>
@@ -76,13 +76,14 @@ const Login = () => {
             <Label htlFor='password'>Password</Label>
           </Container>
         </Wrapper>
-
-        <button type='submit' onClick={() => setMode('signin')}>
-          Sign in
-        </button>
-        <button type='submit' onClick={() => setMode('signup')}>
-          Register
-        </button>
+        <ButtonWrapper>
+          <Button type='submit' onClick={() => setMode('signin')}>
+            Sign in
+          </Button>
+          <Button type='submit' onClick={() => setMode('signup')}>
+            Register
+          </Button>
+        </ButtonWrapper>
       </Form>
       {errors && <div>{errors.message}</div>}
     </PageWrapper>
@@ -94,8 +95,12 @@ export default Login;
 const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   max-width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+}
 `;
 
 const Wrapper = styled.div`
@@ -105,7 +110,7 @@ const Wrapper = styled.div`
 `;
 
 const Form = styled.form`
-  width: 300px;
+  width: 100%;
 `;
 
 const Container = styled.div`
@@ -247,4 +252,26 @@ const CharCount = styled.div`
   padding-left: 16px;
   padding-right: 0;
   white-space: nowrap;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const Button = styled.button`
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #fff;
+  background-image: -webkit-linear-gradient(45deg, #ffc107 0%, #ff8b5f 100%);
+  background-image: linear-gradient(45deg, #ffc107 0%, #ff8b5f 100%);
+  transition: 0.4s;
+  border: none;
+  margin: 15px;
+  :hover {
+    background-image: -webkit-linear-gradient(45deg, #ffc107 0%, #f76a35 100%);
+    background-image: linear-gradient(45deg, #ffc107 0%, #f76a35 100%);
+  }
 `;
