@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { HeartFillIcon } from '@primer/octicons-react';
+import { HeartFillIcon, MailIcon, KeyIcon } from '@primer/octicons-react';
 
 import { sign } from '../reducers/user';
-
 
 const Login = () => {
   const [name, setName] = useState('');
@@ -33,7 +32,7 @@ const Login = () => {
     <PageWrapper>
       <h1>Welcome to SecretMessage!</h1>
       <h2>Please log in or register as a user in order to view your message</h2>
-      <form onSubmit={onFormSubmit}>
+      <Form onSubmit={onFormSubmit}>
         <Wrapper>
           <Container>
             <Heart size={24} />
@@ -53,6 +52,7 @@ const Login = () => {
         </Wrapper>
         <Wrapper>
           <Container>
+            <Mail size={16} />
             <InputBox
               id='email'
               type='text'
@@ -65,6 +65,7 @@ const Login = () => {
         </Wrapper>
         <Wrapper>
           <Container>
+            <Key size={16} />
             <InputBox
               id='password'
               type='password'
@@ -82,7 +83,7 @@ const Login = () => {
         <button type='submit' onClick={() => setMode('signup')}>
           Register
         </button>
-      </form>
+      </Form>
       {errors && <div>{errors.message}</div>}
     </PageWrapper>
   );
@@ -94,12 +95,17 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+  max-width: 300px;
+`;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+`;
+
+const Form = styled.form`
+  width: 300px;
 `;
 
 const Container = styled.div`
@@ -108,7 +114,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   box-sizing: border-box;
-  width: 300px;
+  max-width: 300px;
   height: 56px;
   :hover {
     background-color: #f1f1f1;
@@ -117,6 +123,38 @@ const Container = styled.div`
 `;
 
 const Heart = styled(HeartFillIcon)`
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  right: initial;
+  transform: translateY(-50%);
+  color: #505050;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+`;
+
+const Mail = styled(MailIcon)`
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  right: initial;
+  transform: translateY(-50%);
+  color: #505050;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+`;
+
+const Key = styled(KeyIcon)`
   position: absolute;
   top: 50%;
   left: 16px;
