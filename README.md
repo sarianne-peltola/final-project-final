@@ -4,7 +4,7 @@ This project is a full-stack authentication project with a simple registration a
 
 ## The problem
 
-The styling is unfortunately not yet finished. I run into problem with my styled components. The user can't click on the input field, it's probably somehow hidden due to the absolute/relative positionings. I have hard time changing the positioning without some of the effects disappearing.
+The styling is unfortunately not yet finished. I run into problems with my styled components and the absolute and relative positionings which I finally solved with z-index. The styling will be developed more, same with returning something meaningful from the api.
 
 ## View it live
 
