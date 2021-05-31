@@ -7,8 +7,7 @@ import bcrypt from 'bcrypt';
 
 dotenv.config()
 
-// const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/authAPI';
-const mongoUrl = 'mongodb://localhost/authAPI';
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/authAPI';
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
