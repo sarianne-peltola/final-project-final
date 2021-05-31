@@ -1,14 +1,14 @@
 import express from 'express';
-import bodyParser, { json } from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import crypto from 'crypto';
 import dotenv from 'dotenv'
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt';
 
 dotenv.config()
 
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/authAPI';
+// const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/authAPI';
+const mongoUrl = 'mongodb://localhost/authAPI';
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -46,7 +46,7 @@ const authenticateUser = async (req, res, next) => {
     if (user) {
       next()
     } else {
-      res.status(401).json({ message: "Not authenticated" })
+      res.status(401).json({ message: "Not authorized" })
     }
   } catch (error) {
     res.status(400).json({ message: "Invalid request", error })
@@ -57,16 +57,16 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Start defining your routes here
 app.get('/', (req, res) => {
-  res.send('Hello world');
+  res.send('Welcome to the secret message API');
 });
 
 app.get('/mypage', authenticateUser)
 app.get('/mypage', (req, res) => {
-  res.json('This is my page')
+  res.json('This is a secret message')
 })
 
 app.post('/signup', async (req, res) => {
